@@ -8,6 +8,8 @@
     "node": ">=5.2.0"
   },
   "scripts": {
+    "preinstall": "npm i -g typings typescript",
+    "postinstall": "tsc",
     "start": "node build/web.js",
     "test": "echo \"Error: no tests specified\""
   },
