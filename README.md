@@ -31,13 +31,13 @@ npm install -g gulp-cli
 typings install
 ```
 
-3. Provide a `.env` file (copy the template) and provider you own values
+3. Provide a `.env` file (copy the template) and provide you own values
 
 ```sh
 cp .env.example .env
 ```
 
-Create a local SQL database in MySQL/Postgres/etc and fill out the env values to connect there.
+Create a local relational database in MySQL/Postgres/etc (see sequelize for supported dialects) and fill out the env values to connect there.
 
 4. Run the database migrations
 ```sh
@@ -60,7 +60,7 @@ npm start
 
 7. Linting your code while developing
 
-Linting is dealt with by eslint, jshint and tslint. There are config files for those in the repo. You should install editor plugins to do this easily and automatically for you as you code and save files, eg, for atom:
+Linting is dealt with by eslint, jshint and tslint. There are config files for those in the repo. You should install editor plugins to do this easily and automatically for you as you code and save files (e.g. for atom):
 
 ```sh
 apm install eslint
@@ -102,10 +102,11 @@ Below is a list of all the supported features. Refer to the [Wiki](https://githu
 4. Reading Cookies in the Request
 5. HTTP Method Overriding for customer headers
 6. Body Parsing to provide all content as JSON in `req` object
+7. Multiple Security Middleware Filters
 
 #### Server Side Tools
 1. Response Handler with HTTP Status Codes
-2. Basic Folder Structure
+2. Semantic Folder Structure
 3. Sequelize for SQL query building + connecting to relational DBs
 
 #### Code Quality Tools
@@ -116,7 +117,5 @@ Below is a list of all the supported features. Refer to the [Wiki](https://githu
 5. Git dotfiles to better manage git history
 
 #### Additional
-1. Basic CRON Job template
 2. Gulp for task management + additional tasks for:
 	a. Detecting vulnerable modules in `package.json`
-	b. Compiling Web Assets using Webpack
