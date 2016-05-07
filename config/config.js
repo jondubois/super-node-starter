@@ -1,3 +1,5 @@
+/* eslint no-magic-numbers:0 */
+
 'use strict';
 
 /*=============================================>>>>>
@@ -6,13 +8,19 @@
 
 require('dotenv').config();
 
+// Parse the Heroku type database URL to retrieve the vars
+const CREDENTIALS = process.env.DATABASE_URL.split('/')[ 2 ].split('@').shift().split(':');
+const DATABASE = process.env.DATABASE_URL.split('/').pop();
+const HOST = process.env.DATABASE_URL.split('/')[ 2 ].split('@').pop().split(':').shift();
+const ENGINE = process.env.DATABASE_ENGINE;
+
 module.exports = {
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_ENTITY,
-  host:     process.env.DATABASE_HOST,
-  dialect:  process.env.DATABASE_ENGINE
-}
+  username: CREDENTIALS[ 0 ],
+  password: CREDENTIALS[ 1 ],
+  database: DATABASE,
+  host:     HOST,
+  dialect:  ENGINE
+};
 
 /*= End of SEQUELIZE MIGRATIONS CONFIGURATIONS =*/
 /*=============================================<<<<<*/
