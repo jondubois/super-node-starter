@@ -1,7 +1,5 @@
 ## Super Node Starter
 
-[![Circle CI](https://circleci.com/gh/gigster-eng/super-node-starter.svg?style=svg&circle-token=15cb369d08b433d47648e998cf8eac8e369ca858)](https://circleci.com/gh/gigster-eng/super-node-starter) [![Code Climate](https://codeclimate.com/repos/567779db7df1497f6c004c1d/badges/e873373aad89c2eca43e/gpa.svg)](https://codeclimate.com/repos/567779db7df1497f6c004c1d/feed) [![dependencies](https://david-dm.org/gigster-eng/super-node-starter.svg)](https://david-dm.org/gigster-eng/super-node-starter) [![devDependencies](https://david-dm.org/gigster-eng/super-node-starter/dev-status.svg)](https://david-dm.org/gigster-eng/super-node-starter#info=devDependencies)
-
 ### Server Frameworks
 
 - Typescript
@@ -93,7 +91,7 @@ cp .env.example .env
 docker run -d -P --name web super-node-starter
 ```
 
-Below is a list of all the supported features. Refer to the [Wiki](https://github.com/gigster-eng/super-node-starter/wiki) for more information on how to use them along with configuration options:
+Below is a list of all the supported features:
 
 #### Middleware Tools
 1. Application Logging using Winston
