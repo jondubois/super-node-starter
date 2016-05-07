@@ -1,6 +1,6 @@
 ## Super Node Starter
 
-[![Circle CI](https://circleci.com/gh/Stephn-R/super-node-starter.svg?style=svg&circle-token=15cb369d08b433d47648e998cf8eac8e369ca858)](https://circleci.com/gh/Stephn-R/super-node-starter) [![Code Climate](https://codeclimate.com/repos/567779db7df1497f6c004c1d/badges/e873373aad89c2eca43e/gpa.svg)](https://codeclimate.com/repos/567779db7df1497f6c004c1d/feed) [![dependencies](https://david-dm.org/stephn-r/super-node-starter.svg)](https://david-dm.org/stephn-r/super-node-starter) [![devDependencies](https://david-dm.org/stephn-r/super-node-starter/dev-status.svg)](https://david-dm.org/stephn-r/super-node-starter#info=devDependencies)
+[![Circle CI](https://circleci.com/gh/gigster-eng/super-node-starter.svg?style=svg&circle-token=15cb369d08b433d47648e998cf8eac8e369ca858)](https://circleci.com/gh/gigster-eng/super-node-starter) [![Code Climate](https://codeclimate.com/repos/567779db7df1497f6c004c1d/badges/e873373aad89c2eca43e/gpa.svg)](https://codeclimate.com/repos/567779db7df1497f6c004c1d/feed) [![dependencies](https://david-dm.org/gigster-eng/super-node-starter.svg)](https://david-dm.org/gigster-eng/super-node-starter) [![devDependencies](https://david-dm.org/gigster-eng/super-node-starter/dev-status.svg)](https://david-dm.org/gigster-eng/super-node-starter#info=devDependencies)
 
 ### Server Frameworks
 
@@ -11,7 +11,7 @@
 
 A complete NodeJS server starter template. This template is designed to give any NodeJS project an extreme running start that includes some of the most common features vital to the Client/Server relationship model while providing various other tools, and resources for quickly building out any part of the server development stack.
 
-Please refer to the [CONTRIBUTING.md](https://github.com/stephn-r/super-node-starter/blob/master/CONTRIBUTING.md) doc for any questions, concerns, or suggestions
+Please refer to the [CONTRIBUTING.md](https://github.com/gigster-eng/super-node-starter/blob/master/CONTRIBUTING.md) doc for any questions, concerns, or suggestions
 
 #### Running For Development
 
@@ -93,7 +93,7 @@ cp .env.example .env
 docker run -d -P --name web super-node-starter
 ```
 
-Below is a list of all the supported features. Refer to the [Wiki](https://github.com/stephn-r/super-node-starter/wiki) for more information on how to use them along with configuration options:
+Below is a list of all the supported features. Refer to the [Wiki](https://github.com/gigster-eng/super-node-starter/wiki) for more information on how to use them along with configuration options:
 
 #### Middleware Tools
 1. Application Logging using Winston
