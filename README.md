@@ -15,13 +15,13 @@ Please refer to the [CONTRIBUTING.md](https://github.com/gigster-eng/super-node-
 
 #### Running For Development
 
-1. Install dependencies
+a. Install dependencies
 
 ```sh
 npm install
 ```
 
-2. Provide a `.env` file (copy the template) and provide you own values
+b. Provide a `.env` file (copy the template) and provide you own values
 
 ```sh
 cp .env.example .env
@@ -29,20 +29,20 @@ cp .env.example .env
 
 Create a local relational database in MySQL/Postgres/etc (see sequelize for supported dialects) and fill out the env values to connect there.
 
-3. Run the database migrations
+c. Run the database migrations
 ```sh
 sequelize db:migrate
 ```
 
 Note: You may want to install an editor plugin to automatically do this for you on file save, like atom-typescript
 
-4. Run the app!
+d. Run the app!
 
 ```sh
 npm start
 ```
 
-5. Linting your code while developing
+e. Linting your code while developing
 
 Linting is dealt with by eslint, jshint and tslint. There are config files for those in the repo. You should install editor plugins to do this easily and automatically for you as you code and save files (e.g. for atom):
 
@@ -56,19 +56,19 @@ apm install linter-tslint
 
 #### Local Docker Deployment
 
-1. Build the Docker Image
+a. Build the Docker Image
 
 ```sh
 docker build -t super-node-starter .
 ```
 
-2. Provide a `.env` file (copy the template) and provider you own values
+b. Provide a `.env` file (copy the template) and provider you own values
 
 ```sh
 cp .env.example .env
 ```
 
-3. Run the app
+c. Run the app
 
 ```sh
 docker run -d -P --name web super-node-starter
