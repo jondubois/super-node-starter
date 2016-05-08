@@ -8,19 +8,27 @@
 
 require('dotenv').config();
 
-// Parse the Heroku type database URL to retrieve the vars
-const CREDENTIALS = process.env.DATABASE_URL.split('/')[ 2 ].split('@').shift().split(':');
-const DATABASE = process.env.DATABASE_URL.split('/').pop();
-const HOST = process.env.DATABASE_URL.split('/')[ 2 ].split('@').pop().split(':').shift();
-const ENGINE = process.env.DATABASE_ENGINE;
+const DB_URL = process.env.DATABASE_URL || '';
 
-module.exports = {
-  username: CREDENTIALS[ 0 ],
-  password: CREDENTIALS[ 1 ],
-  database: DATABASE,
-  host:     HOST,
-  dialect:  ENGINE
-};
+try {
+  
+  // Parse the Heroku type database URL to retrieve the vars
+  const CREDENTIALS = DB_URL.split('/')[ 2 ].split('@').shift().split(':');
+  const DATABASE = DB_URL.split('/').pop();
+  const HOST = DB_URL.split('/')[ 2 ].split('@').pop().split(':').shift();
+  const ENGINE = process.env.DATABASE_ENGINE;
+
+  module.exports = {
+    username: CREDENTIALS[ 0 ],
+    password: CREDENTIALS[ 1 ],
+    database: DATABASE,
+    host:     HOST,
+    dialect:  ENGINE
+  };
+
+} catch(e) {
+  throw new Error('Failed to parse DATABASE_URL from env');
+}
 
 /*= End of SEQUELIZE MIGRATIONS CONFIGURATIONS =*/
 /*=============================================<<<<<*/
