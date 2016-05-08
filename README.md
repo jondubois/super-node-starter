@@ -15,23 +15,13 @@ Please refer to the [CONTRIBUTING.md](https://github.com/gigster-eng/super-node-
 
 #### Running For Development
 
-1. Install modules
+1. Install dependencies
 
 ```sh
 npm install
-npm install -g sequelize-cli
-npm install -g typescript
-npm install -g typings
-npm install -g gulp-cli
 ```
 
-2. Install typescript dependencies
-
-```sh
-typings install
-```
-
-3. Provide a `.env` file (copy the template) and provide you own values
+2. Provide a `.env` file (copy the template) and provide you own values
 
 ```sh
 cp .env.example .env
@@ -39,26 +29,20 @@ cp .env.example .env
 
 Create a local relational database in MySQL/Postgres/etc (see sequelize for supported dialects) and fill out the env values to connect there.
 
-4. Run the database migrations
+3. Run the database migrations
 ```sh
 sequelize db:migrate
 ```
 
-5. Build the app, compiling typescript files
-
-```sh
-tsc
-```
-
 Note: You may want to install an editor plugin to automatically do this for you on file save, like atom-typescript
 
-6. Run the app!
+4. Run the app!
 
 ```sh
 npm start
 ```
 
-7. Linting your code while developing
+5. Linting your code while developing
 
 Linting is dealt with by eslint, jshint and tslint. There are config files for those in the repo. You should install editor plugins to do this easily and automatically for you as you code and save files (e.g. for atom):
 
@@ -70,10 +54,7 @@ apm install linter-eslint
 apm install linter-tslint
 ```
 
-#### Deploying your code to heroku ####
-to do...
-
-#### Local Docker Deployment (Still WIP!)
+#### Local Docker Deployment
 
 1. Build the Docker Image
 
@@ -115,6 +96,7 @@ Below is a list of all the supported features:
 3. ESLint Config File to manage code consistency
 4. Editor Config File to enforce code indentation
 5. Git dotfiles to better manage git history
+6. Typescript for easy development and strongly typed definitions
 
 #### Additional
 2. Gulp for task management + additional tasks for:
