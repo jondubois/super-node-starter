@@ -78,6 +78,7 @@
   "image": "heroku/nodejs",
   "addons": [
     "heroku-postgresql:hobby-dev",
+    "rediscloud:30",
     "papertrail:choklad"
   ]
 }
