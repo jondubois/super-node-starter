@@ -36,7 +36,7 @@ export default function RootRoutes(app: express.Express) {
    */
   router.get('/', (req: express.Request, res: express.Response) => {
     log.debug('--->>> visited client webapp');
-    res.send('Hello World');
+    res.send('Hello World');  
   });
 
   return router;

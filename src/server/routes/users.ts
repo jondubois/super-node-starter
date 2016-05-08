@@ -121,8 +121,9 @@ export default function UserRoutes(app: express.Application) {
    */
   router.get('/logout', (req: express.Request, res: express.Response) => {
     log.debug(`Logging out for User: ${req.user}`);
-    req.logout();
-    res.redirect('/');
+    req.session.regenerate(err => {
+      res.redirect('/');
+    });
   });
 
   /*=============================

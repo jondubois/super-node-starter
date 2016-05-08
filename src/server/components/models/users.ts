@@ -40,11 +40,11 @@ export default function(sequelize: any) {
       allowNull: false,
       unique: true
     },
-    first_name: {
+    firstName: {
       type:  Sequelize.STRING,
       field: 'firstName'
     },
-    last_name: {
+    lastName: {
       type:  Sequelize.STRING,
       field: 'lastName'
     }

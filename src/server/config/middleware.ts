@@ -9,6 +9,7 @@ import * as compression from 'compression';
 import * as cors from 'cors';
 import * as errorhandler from 'errorhandler';
 import * as express from 'express';
+import * as _ from 'lodash';
 import * as LocalStrategy from 'passport-local';
 import * as path from 'path';
 import * as passport from 'passport';
@@ -20,6 +21,8 @@ import * as helmet from 'helmet';
 import log from './logging';
 
 const hpp = require('hpp');
+const RedisStore = require('connect-redis')(session);
+const sessionStore = new RedisStore({ url: process.env.REDISCLOUD_URL });
 
 /*= End of TYPINGS =*/
 /*=============================================<<<<<*/
@@ -62,7 +65,8 @@ export default function Middleware(app: express.Express) {
     resave:            true,
     rolling:           true,
     saveUninitialized: false,
-    secret:            process.env.SECRET
+    secret:            process.env.SECRET,
+    store:             sessionStore
   };
 
   if (env === 'development' || env === 'staging') {
@@ -127,6 +131,18 @@ export default function Middleware(app: express.Express) {
   /*= End of SERVER MIDDLEWARE =*/
   /*=============================================<<<<<*/
 
+  passport.serializeUser((user: any, done: Function) => {
+    done(null, user.token);
+  });
+
+  passport.deserializeUser((token: any, done: Function) => {
+    Users.findOne({
+      where: { token: token }
+    }).then((user: any) => {
+      done(null, _.omit(user.toJSON(), 'password'));
+    });
+  });
+
   /*===============================================
   =            LOCAL PASSPORT STRATEGY            =
   ===============================================*/
@@ -144,7 +160,7 @@ export default function Middleware(app: express.Express) {
         if(Security.cryptCompare(password, user.get('password'))) {
           // Password Success
           user.set('token', uuid.v4()).save().then(() => {
-            return done(null, user.get('token'));
+            return done(null, { id: user.get('id'), token: user.get('token') });
           });
         } else {
           // Password Failed
