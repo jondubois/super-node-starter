@@ -4,8 +4,22 @@
 = TYPINGS =
 ===============================================>>>>>*/
 
+import * as bodyParser from 'body-parser';
+import * as compression from 'compression';
+import * as cors from 'cors';
+import * as errorhandler from 'errorhandler';
 import * as express from 'express';
+import * as LocalStrategy from 'passport-local';
+import * as path from 'path';
+import * as passport from 'passport';
+import * as session from 'express-session';
 import * as sequelize from 'sequelize';
+import * as uuid from 'node-uuid';
+import * as helmet from 'helmet';
+
+import log from './logging';
+
+const hpp = require('hpp');
 
 /*= End of TYPINGS =*/
 /*=============================================<<<<<*/
@@ -14,21 +28,11 @@ import * as sequelize from 'sequelize';
 = MODULES =
 ===============================================>>>>>*/
 
-const cors = require('cors');
-import uuid = require('node-uuid');
-import passport = require('passport');
-import bodyParser = require('body-parser');
-import compression = require('compression');
-import errorhandler = require('errorhandler');
-import methodOverride = require('method-override');
-import LocalStrategy = require('passport-local');
-import session = require('express-session');
-
-import db = require('../components/models');
+import db from '../components/models';
 
 /*----------  SERVICES  ----------*/
 
-import Security = require('../components/services/security');
+import * as Security from '../components/services/security';
 
 /*=====  End of MODULES  ======*/
 
@@ -36,36 +40,68 @@ import Security = require('../components/services/security');
  * Orchestrates the middleware tools for the Express Application
  * @param  {Object} app Express Application
  */
-function Middleware(app: express.Express) {
+export default function Middleware(app: express.Express) {
   const env = process.env.NODE_ENV;
 
   /*=============================================>>>>>
   = IMPORT DATABASE TABLES ORM =
   ===============================================>>>>>*/
 
-  const Models = new db.Models();
+  const Models = new db();
   const Users = Models.Users;
 
   /*= End of IMPORT DATABASE TABLES ORM =*/
   /*=============================================<<<<<*/
 
-  let sess = {
-    name: 'app.sid',
+  const sess = {
+    name:         'nodeStarter.sid',
     genid: (req: express.Request) => {
-      return uuid.v4() // use UUIDs for session IDs
+      // use UUIDs for session IDs
+      return uuid.v4();
     },
-    resave: true,
-    rolling: true,
+    resave:            true,
+    rolling:           true,
     saveUninitialized: false,
-    secret: process.env.SECRET
+    secret:            process.env.SECRET
   };
 
   if (env === 'development' || env === 'staging') {
-    app.use(errorhandler());
+    app.use(errorhandler({log: (err: Error, str: string, req: express.Request) => {
+      log.debug('===== SHOWING ERROR =====');
+      log.debug(str);
+      log.debug(req.method);
+      log.debug(req.url);
+      log.debug('===== END ERROR DISPLAY =====');
+    }}));
   } else {
-    app.set('trust proxy', 1); // trust first proxy
+    // trust first proxy
+    app.set('trust proxy', 1);
     // sess.cookie.secure = true; // serve secure cookies
+    /* Turn on View Caching */
+    app.set('view cache', true);
   }
+
+  /*=============================================>>>>>
+  = SECURITY MIDDLEWARE =
+  ===============================================>>>>>*/
+
+  /* Prevent XSS Attacks */
+  app.use(helmet.xssFilter());
+  /* Prevents click jacking */
+  app.use(helmet.frameguard('deny'));
+  /* Enforces users to use HTTPS (requires HTTPS/TLS/SSL) */
+  // app.use(helmet.hsts({ maxAge: process.env.APP_HTTPS_TIMEOUT }));
+  /* Hides x-powered-by header */
+  app.use(helmet.hidePoweredBy());
+  /* Prevent MIME type sniffing */
+  app.use(helmet.noSniff());
+  /* Disable Caching */
+  app.use(helmet.noCache());
+  /* Prevent Parameter Pollution */
+  app.use(hpp());
+
+  /*= End of SECURITY MIDDLEWARE =*/
+  /*=============================================<<<<<*/
 
   /*=============================================>>>>>
   = SERVER MIDDLEWARE =
@@ -83,20 +119,10 @@ function Middleware(app: express.Express) {
   app.use(bodyParser.urlencoded({ extended: false }));
   /* Returns request body as JSON */
   app.use(bodyParser.json());
-  /* Allows HTTP Method Overriding */
-  app.use(methodOverride());
-  /* Compresses Server Responses */
+  /* GZIP everything */
   app.use(compression());
   /* Establishes CORS headers */
   app.options(process.env.CORS, cors());
-
-  passport.serializeUser((id: string, done: Function) => {
-    done(null, id);
-  });
-
-  passport.deserializeUser((user: string, done: Function) => {
-    done(null, user);
-  });
 
   /*= End of SERVER MIDDLEWARE =*/
   /*=============================================<<<<<*/
@@ -112,7 +138,7 @@ function Middleware(app: express.Express) {
     // Fetch matching user by email
     Users.findOne({
       where: { email: username }
-    }).then(user => {
+    }).then((user: any) => {
       // check password
       if(user !== null) {
         if(Security.cryptCompare(password, user.get('password'))) {
@@ -140,5 +166,3 @@ function Middleware(app: express.Express) {
   /*= End of MODULES =*/
   /*=============================================<<<<<*/
 }
-
-export = Middleware;
