@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "cors": "registry:npm/cors#2.7.0+20160505024722",
-    "lodash": "registry:npm/lodash#4.0.0+20160416211519",
     "moment": "registry:npm/moment#2.10.5+20160211003958",
     "node-uuid": "registry:npm/node-uuid#1.4.7+20160503013124",
     "sequelize": "registry:npm/sequelize#3.0.0+20160505151037"
