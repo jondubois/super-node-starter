@@ -2,16 +2,16 @@
   "name": "super-node-starter",
   "version": "2.0.0",
   "description": "a simple starter project for NodeJS Express apps",
-  "main": "server/web.js",
+  "main": "build/server/web.js",
   "engine-strict": true,
   "engines": {
-    "node": ">=5.2.0"
+    "node": ">=5.11.0"
   },
   "scripts": {
     "preinstall": "npm i -g typings typescript",
-    "postinstall": "tsc",
+    "postinstall": "typings install && tsc",
     "start": "node build/server/web.js",
-    "test": "echo \"Error: no tests specified\""
+    "test": "echo \"Error: no tests specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,6 @@
   "homepage": "https://github.com/stephn-r/super-node-starter#readme",
   "private": true,
   "dependencies": {
-    "bcrypt": "0.8.5",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.13.3",
     "checkit": "0.6.0",
