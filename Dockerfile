@@ -1,5 +1,5 @@
 # 1. Pulling the docker images we need
-FROM node:5.11.0
+FROM node:6.1.0
 MAINTAINER Stephen Rodriguez <@stephnr>
 
 # 2. Labelling the docker image version/details
@@ -19,25 +19,22 @@ WORKDIR /usr/src/app
 # 6. Provide Environment Properties
 ENV NODE_ENV=production
 
-# 7. Copy project files into the application folder
-COPY . /usr/src/app
+# 7. Clone the Super Node Project
+RUN git clone https://github.com/gigster-eng/super-node-starter
 
 # 8. Install Dependencies (not devDependencies)
 RUN npm install
-
-# 9. Your Custom Build Steps
-# {{ CUSTOM BUILD STEPS GO HERE }}
 
 ###################################
 ######      EXPOSE PORT      ######
 ###################################
 
-# 10. Expose the app on port 80
+# 9. Expose the app on port 80
 EXPOSE 80
 
 ###############################
 ######      RUN APP      ######
 ###############################
 
-# 11. Run the application specific build/run commands
-CMD [ "node", "start" ]
+# 10. Run the application specific build/run commands
+CMD [ "npm", "start" ]
