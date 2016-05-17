@@ -20,7 +20,7 @@ WORKDIR /usr/src/app
 ENV NODE_ENV=production
 
 # Clone the Super Node Project
-RUN git clone https://github.com/gigster-eng/super-node-starter
+# RUN git clone https://github.com/gigster-eng/super-node-starter
 
 # Install Dependencies (not devDependencies)
 RUN npm install
