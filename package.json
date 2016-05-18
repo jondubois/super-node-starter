@@ -9,7 +9,7 @@
   "scripts": {
     "preinstall": "npm i -g typings typescript",
     "postinstall": "typings install && tsc",
-    "start": "node build/web.js",
+    "start": "node build/server/web.js",
     "test": "echo \"Error: no tests specified\" && exit 1"
   },
   "repository": {

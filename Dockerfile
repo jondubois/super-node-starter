@@ -19,13 +19,14 @@ WORKDIR /usr/src/app
 # Provide Environment Properties
 ENV NODE_ENV=production
 
-# Clone the Super Node Project
-# RUN git clone https://github.com/gigster-eng/super-node-starter
+# Bundle app source
+COPY . /usr/src/app
 
 # Install Dependencies (not devDependencies)
 RUN npm install
 
 # Install global dependencies
+RUN npm install -g typescript
 RUN npm install -g typings
 RUN npm install -g webpack
 RUN npm install -g foreman
@@ -33,9 +34,6 @@ RUN npm install -g foreman
 # Install typescript dependencies
 COPY typings.json /usr/src/app
 RUN typings install
-
-# Bundle app source
-COPY . /usr/src/app
 
 # Open the http port
 EXPOSE 80
