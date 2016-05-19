@@ -1,0 +1,15 @@
+{
+  "imageName": "gigsterdeploybot/super-node-starter",
+  "port": "80:80",
+  "containerName": "container-super-node-starter",
+  "links": [
+    "container-sns-postgres"
+  ],
+  "dependencies": [
+    {
+      "containerName": "container-sns-postgres",
+      "image": "gigsterdeploybot/sns-postgres:v1",
+      "port": "5432:5432"
+    }
+  ]
+}
