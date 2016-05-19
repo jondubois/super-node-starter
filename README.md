@@ -17,8 +17,16 @@ Please refer to the [CONTRIBUTING.md](https://github.com/gigster-eng/super-node-
 
 **a. Install dependencies**
 
+**Mac and Windows:**
+
 ```sh
 npm install
+```
+
+**Linux:**
+
+```sh
+sudo npm install
 ```
 
 **b. Provide a `.env` file (copy the template) and provide you own values**
