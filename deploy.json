@@ -1,6 +1,6 @@
 {
   "imageName": "gigsterdeploybot/super-node-starter",
-  "port": "80:80",
+  "port": "80:3000",
   "containerName": "container-super-node-starter",
   "links": [
     "container-sns-postgres"
