@@ -26,16 +26,11 @@ COPY . /usr/src/app
 RUN npm install
 
 # Install global dependencies
-RUN npm install -g typings
 RUN npm install -g webpack
 RUN npm install -g foreman
 
-# Install typescript dependencies
-COPY typings.json /usr/src/app
-RUN typings install
-
 # Open the http port
-EXPOSE 80
+EXPOSE 3000
 
 ###############################
 ######      RUN APP      ######
