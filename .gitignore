@@ -2,7 +2,7 @@
 build
 
 # Environment
-.env
+# .env
 
 # Dependency directories
 node_modules
