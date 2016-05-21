@@ -26,7 +26,6 @@ COPY . /usr/src/app
 RUN npm install
 
 # Install global dependencies
-RUN npm install -g typescript
 RUN npm install -g typings
 RUN npm install -g webpack
 RUN npm install -g foreman
