@@ -26,6 +26,10 @@ COPY . /usr/src/app
 RUN npm install
 
 # Install global dependencies
+RUN npm install -g typescript@1.8.10
+RUN npm install -g typings@0.8.1
+RUN typings install
+RUN tsc
 RUN npm install -g webpack
 RUN npm install -g foreman
 
